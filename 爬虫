@@ -34,12 +34,4 @@ class pc:
             if self.__time>=等待次数:
                 break
         return True if self.__time<等待次数 else False
-a=pc()
-a.网页_访问(r'https://www.taobao.com/')
-a.就绪等待(r'//div[@class="site-nav-sign"]/a')
-a.对象.click()
 
-a.就绪等待(r'//form')
-print(a.对象)
-a.网页_进入窗口(a.对象)
-a.对象.seed_keys("18267699920")
