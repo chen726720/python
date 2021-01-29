@@ -1,0 +1,45 @@
+from selenium  import webdriver
+from time import sleep
+class pc:
+    def __init__(self,path=None):
+        try:
+            self.__web=webdriver.Chrome(path)
+        except:
+            print("驱动打开失败,请在pc()内填入路径")
+    def 网页_访问(self,网址):
+        self.__web.get(网址)
+    def 网页_进入窗口(self,表达式):
+        self.__web.switch_to.frame(表达式)
+    def 元素_是否存在(self,代码):
+        try:
+            self.对象=self.__web.find_element_by_xpath(代码)
+            
+        except:
+            return False
+        else:
+            
+            return True
+    def 元素_查找(self,表达式):
+        self.对象=self.__web.find_element_by_xpath(表达式)
+        return (self.__对象)
+    def 元素_查找s(self,表达式):
+        self.对象s=self.__web.find_elements_by_xpath(表达式)
+        return (self.__对象s)
+
+    def 就绪等待(self,表达式,间隔=0.5,等待次数=10):
+        self.__time=0
+        while pc.元素_是否存在(self,表达式)==False:
+            sleep(间隔)
+            self.__time+=1
+            if self.__time>=等待次数:
+                break
+        return True if self.__time<等待次数 else False
+a=pc()
+a.网页_访问(r'https://www.taobao.com/')
+a.就绪等待(r'//div[@class="site-nav-sign"]/a')
+a.对象.click()
+
+a.就绪等待(r'//form')
+print(a.对象)
+a.网页_进入窗口(a.对象)
+a.对象.seed_keys("18267699920")
